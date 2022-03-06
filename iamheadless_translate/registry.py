@@ -12,7 +12,6 @@ class TransaltionRegistry:
 
     def bulk_register(self, list_of_translations):
         for x in list_of_translations:
-            print('--', x)
             self.register(*x)
 
     def translate(self, key, language):
