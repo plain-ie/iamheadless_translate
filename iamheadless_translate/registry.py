@@ -1,27 +1,18 @@
 class TransaltionRegistry:
 
     translations = {}
-    app_translations = {}
 
     def __init__(self):
         pass
 
-    def register(self, key, language, translation, app=None):
-
+    def register(self, key, language, translation):
         if key not in self.translations.keys():
             self.translations[key] = {}
-
         self.translations[key][language] = translation
 
-        if app is not None:
-
-            if app not in self.app_translations.keys():
-                self.app_translations[app] = []
-
-            self.app_translations[app].append(key)
-
-    def bulk_register(list_of_translations):
+    def bulk_register(self, list_of_translations):
         for x in list_of_translations:
+            print('--', x)
             self.register(*x)
 
     def translate(self, key, language):

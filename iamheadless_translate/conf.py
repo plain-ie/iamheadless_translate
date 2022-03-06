@@ -1,6 +1,6 @@
 from django.conf import settings as dj_settings
 
-from .apps import IamheadlessTranslateConfig
+from .apps import IamheadlessTranslateConfig as AppConfig
 from .loader import load
 
 
@@ -8,7 +8,7 @@ class Settings:
 
     _TRANSLATION_REGISTRY = None
 
-    APP_NAME = IamheadlessTranslateConfig.name
+    APP_NAME = AppConfig.name
     VAR_PREFIX = APP_NAME.upper()
 
     VAR_TRANSLATION_REGISTRY_CLASS = f'{VAR_PREFIX}_TRANSLATION_REGISTRY_CLASS'
@@ -18,7 +18,7 @@ class Settings:
         return getattr(
             dj_settings,
             self.VAR_TRANSLATION_REGISTRY_CLASS,
-            'iamheadless_publisher_translate.registry.TransaltionRegistry'
+            f'{self.APP_NAME}.registry.TransaltionRegistry'
         )
 
     @property
